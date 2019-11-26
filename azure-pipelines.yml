@@ -1,0 +1,9 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- pwsh: gci *unit.test.ps1 | % { & $_.FullName }
+  displayName: 'Run all .unit.test.ps1 scripts'
