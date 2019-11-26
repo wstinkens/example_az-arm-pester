@@ -1,7 +1,4 @@
-param (
-	[Parameter(Mandatory=$true)]
-	[string]$TemplatePath 
-)
+$TemplatePath = (Split-Path $myInvocation.MyCommand.Path) + "\" + "template.json"
 
 $module = Get-Module Pester
 if (-not $module){
