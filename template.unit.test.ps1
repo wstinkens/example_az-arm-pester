@@ -3,6 +3,14 @@ param (
 	[string]$TemplatePath 
 )
 
+$module = Get-Module Pester
+if (-not $module){
+    Write-Verbose "Installing Pester module"
+    Install-Module pester -Force
+}
+Write-Verbose "Importing Pester module"
+Import-Module Pester
+
 $templateARM = Get-Content $TemplatePath -Raw -ErrorAction SilentlyContinue
 $template = ConvertFrom-Json -InputObject $templateARM -ErrorAction SilentlyContinue
 

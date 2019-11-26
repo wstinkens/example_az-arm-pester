@@ -3,6 +3,14 @@ param (
 	[string]$ResourceGroupName 
 )
 
+$module = Get-Module Pester
+if (-not $module){
+    Write-Verbose "Installing Pester module"
+    Install-Module pester -Force
+}
+Write-Verbose "Importing Pester module"
+Import-Module Pester
+
 $resources = Get-AzResource -ResourceGroupName $ResourceGroupName
 
 Describe 'ARM Deployment Validation' {
